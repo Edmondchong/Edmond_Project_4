@@ -50,8 +50,8 @@ if uploaded_file:
     with open(input_path, "wb") as f:
         f.write(uploaded_file.read())
 
-    # Show the uploaded image
-    st.image(input_path, caption="Uploaded Image", use_container_width=True)
+    # Show the uploaded image once
+    st.image(input_path, caption="Uploaded Car Image", use_column_width=True)
 
     # Button to run detection
     if st.button("🔍 Detect"):
@@ -63,13 +63,12 @@ if uploaded_file:
         results = model(input_path)
         results[0].save_crop("cropped_plates")
 
-        # Show detection result (annotated image)
-        st.image(input_path, caption="Detected License Plate", use_column_width=True)
-
         # OCR with EasyOCR
         reader = easyocr.Reader(['en'])
         image_paths = glob.glob("cropped_plates/**/*.jpg", recursive=True) + \
                       glob.glob("cropped_plates/**/*.png", recursive=True)
+
+        detected_plates = set()  # avoid duplicates
 
         if not image_paths:
             st.error("❌ No license plate detected.")
@@ -78,6 +77,11 @@ if uploaded_file:
                 img = cv2.imread(path)
                 result = reader.readtext(img)
                 if result:
-                    st.success(f"Car Plate: **{result[0][1]}**")
-                else:
-                    st.warning("Car Plate: Not recognized")
+                    detected_plates.add(result[0][1])  # add unique plate
+
+            # Show results once each
+            if detected_plates:
+                for plate in detected_plates:
+                    st.success(f"Car Plate: **{plate}**")
+            else:
+                st.warning("Car Plate: Not recognized")
