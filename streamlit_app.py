@@ -40,7 +40,7 @@ model = load_model()
 # Streamlit UI
 # -------------------------------
 st.title("🚗 Edmond Chong's Car Plate Recognition App")
-st.write("Upload a car image and the app will detect the license plate and read the text using EasyOCR.")
+st.write("Upload a car image and click **Detect** to recognize the license plate.")
 
 uploaded_file = st.file_uploader("Upload a car image...", type=["jpg", "jpeg", "png"])
 
@@ -50,29 +50,34 @@ if uploaded_file:
     with open(input_path, "wb") as f:
         f.write(uploaded_file.read())
 
-    # Clean old crops
-    if os.path.exists("cropped_plates"):
-        shutil.rmtree("cropped_plates")
+    # Show the uploaded image
+    st.image(input_path, caption="Uploaded Image", use_column_width=True)
 
-    # Run YOLO inference
-    results = model(input_path)
-    results[0].save_crop("cropped_plates")
+    # Button to run detection
+    if st.button("🔍 Detect"):
+        # Clean old crops
+        if os.path.exists("cropped_plates"):
+            shutil.rmtree("cropped_plates")
 
-    # Show detection result (annotated image)
-    st.image(input_path, caption="Detected License Plate", use_container_width=True)
+        # Run YOLO inference
+        results = model(input_path)
+        results[0].save_crop("cropped_plates")
 
-    # OCR with EasyOCR
-    reader = easyocr.Reader(['en'])
-    image_paths = glob.glob("cropped_plates/**/*.jpg", recursive=True) + \
-                  glob.glob("cropped_plates/**/*.png", recursive=True)
+        # Show detection result (annotated image)
+        st.image(input_path, caption="Detected License Plate", use_column_width=True)
 
-    if not image_paths:
-        st.error("❌ No license plate detected.")
-    else:
-        for path in image_paths:
-            img = cv2.imread(path)
-            result = reader.readtext(img)
-            if result:
-                st.success(f"[{os.path.basename(path)}] Plate Text: {result[0][1]}")
-            else:
-                st.warning(f"[{os.path.basename(path)}] No text detected")
+        # OCR with EasyOCR
+        reader = easyocr.Reader(['en'])
+        image_paths = glob.glob("cropped_plates/**/*.jpg", recursive=True) + \
+                      glob.glob("cropped_plates/**/*.png", recursive=True)
+
+        if not image_paths:
+            st.error("❌ No license plate detected.")
+        else:
+            for path in image_paths:
+                img = cv2.imread(path)
+                result = reader.readtext(img)
+                if result:
+                    st.success(f"Car Plate: **{result[0][1]}**")
+                else:
+                    st.warning("Car Plate: Not recognized")
