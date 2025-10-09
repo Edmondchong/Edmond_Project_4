@@ -41,6 +41,7 @@ model = load_model()
 # -------------------------------
 st.title("🚗 Edmond Chong's Car Plate Recognition App")
 st.write("Upload a car image and click **Detect** to recognize the license plate.")
+st.write("You can download the image prepared in Github folder")
 
 uploaded_file = st.file_uploader("Upload a car image...", type=["jpg", "jpeg", "png"])
 
