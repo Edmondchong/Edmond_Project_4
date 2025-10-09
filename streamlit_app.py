@@ -51,7 +51,7 @@ if uploaded_file:
         f.write(uploaded_file.read())
 
     # Show the uploaded image
-    st.image(input_path, caption="Uploaded Image", use_column_width=True)
+    st.image(input_path, caption="Uploaded Image", use_container_width=True)
 
     # Button to run detection
     if st.button("🔍 Detect"):
