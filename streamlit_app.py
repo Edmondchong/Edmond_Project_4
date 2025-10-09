@@ -59,7 +59,7 @@ if uploaded_file:
     results[0].save_crop("cropped_plates")
 
     # Show detection result (annotated image)
-    st.image(input_path, caption="Detected License Plate", use_column_width=True)
+    st.image(input_path, caption="Detected License Plate", use_container_width=True)
 
     # OCR with EasyOCR
     reader = easyocr.Reader(['en'])
