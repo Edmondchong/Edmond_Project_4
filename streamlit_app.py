@@ -38,9 +38,8 @@ model = load_model()
 # Streamlit UI
 # -------------------------------
 st.title("🚗 Edmond Chong's Car Plate Recognition App")
-st.subheader("Example car images available in Github")
+st.subheader("* Example car images available in Github *")
 st.write("Upload a car image and click **Detect** to recognize the license plate.")
-st.write("You can download the image prepared in Github folder")
 
 uploaded_file = st.file_uploader("Upload a car image...", type=["jpg", "jpeg", "png"])
 
