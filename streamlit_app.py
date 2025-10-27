@@ -20,7 +20,6 @@ HF_TOKEN = st.secrets["HF_TOKEN"]  # stored securely in Streamlit Cloud
 @st.cache_resource
 def load_model():
     if not os.path.exists(MODEL_PATH):
-        st.info("Downloading YOLOv8 model weights from Hugging Face...")
         headers = {"Authorization": f"Bearer {HF_TOKEN}"}
         r = requests.get(MODEL_URL, headers=headers, stream=True)
         r.raise_for_status()
@@ -28,8 +27,7 @@ def load_model():
             for chunk in r.iter_content(chunk_size=8192):
                 if chunk:
                     f.write(chunk)
-        st.success("Model downloaded!")
-
+        
     # Load YOLOv8 model
     model = YOLO(MODEL_PATH)
     return model
@@ -40,6 +38,7 @@ model = load_model()
 # Streamlit UI
 # -------------------------------
 st.title("🚗 Edmond Chong's Car Plate Recognition App")
+st.subheader("Example car images available in Github")
 st.write("Upload a car image and click **Detect** to recognize the license plate.")
 st.write("You can download the image prepared in Github folder")
 
