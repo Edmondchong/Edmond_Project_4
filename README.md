@@ -9,6 +9,7 @@
 
 🖼️ Example test car images are available in the [Images_to_test_demo](./Images_to_test_demo) folder.  
 
+** The Streamlit demo may go idle after a period of inactivity — click “Yes, get this app back up” to restart it. Please note that it may take a short while to reload.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 📖 Project Overview: 🚗 Car License Plate Detection & Recognition
 
