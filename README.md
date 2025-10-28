@@ -1,5 +1,5 @@
 
-# Edmond's Project 4 DEMO 
+# Edmond Chong's Project 4 DEMO 
 
 ### ⚠️The "Complete Project" – with full training pipelines is KEPT PRIVATE to prevent unauthorized copying on the PUBLIC INTERNET.
 
