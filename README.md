@@ -1,14 +1,12 @@
 
-# Edmond Chong's Project 4 DEMO 
+# Edmond Chong's Project 4
 
-### ⚠️The "Complete Project" – with full training pipelines is KEPT PRIVATE to prevent unauthorized copying on the PUBLIC INTERNET.
+### 👉 Try Demo: https://edmondproject4-sufseycgcxqbdjysk7c4xv.streamlit.app/
 
-### 🤝 Full access can be HAPPILY shared 'Upon Recruiter Request' to showcase my Full-Stack AI & Computer Vision skills.
+🖼️ Use this for testing demo >>> [Images_to_test_demo](./Images_to_test_demo)   
 
-### 👉 Try the live demo here: https://edmondproject4-sufseycgcxqbdjysk7c4xv.streamlit.app/
-
-🖼️ Example test car images are available in the [Images_to_test_demo](./Images_to_test_demo) folder.  
-
+### 🤝 Full project is private to prevent unauthorized copying, but Happy to share upon "Recruiter Request"  
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ** The Streamlit demo may go idle after a period of inactivity — click “Yes, get this app back up” to restart it. Please note that it may take a short while to reload.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 📖 Project Overview: 🚗 Car License Plate Detection & Recognition
